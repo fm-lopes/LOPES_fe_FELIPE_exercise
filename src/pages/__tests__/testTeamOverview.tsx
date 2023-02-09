@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {render, screen, waitFor} from '@testing-library/react';
+import {render, screen, waitFor, waitForElementToBeRemoved} from '@testing-library/react';
 import * as API from '../../api';
 import TeamOverview from '../TeamOverview';
+import * as router from 'react-router-dom';
 
 jest.mock('react-router-dom', () => ({
     useLocation: () => ({
@@ -42,8 +43,8 @@ describe('TeamOverview', () => {
             location: '',
             avatar: '',
         };
-        jest.spyOn(API, 'getTeamOverview').mockImplementationOnce(() => Promise.resolve({} as any));
-        jest.spyOn(API, 'getUserData').mockImplementationOnce(() => Promise.resolve({} as any));
+        jest.spyOn(API, 'getTeamOverview').mockImplementationOnce(() => Promise.resolve(teamOverview as any)); // @DONE: teamOverview
+        jest.spyOn(API, 'getUserData').mockImplementation(() => Promise.resolve(userData as any)); // @DONE: userData / mockImplementation
 
         render(<TeamOverview />);
 

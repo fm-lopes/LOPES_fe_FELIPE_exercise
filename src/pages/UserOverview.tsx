@@ -5,8 +5,8 @@ import Card from '../components/Card';
 import {Container} from '../components/GlobalComponents';
 import Header from '../components/Header';
 
-var mapU = (user: UserData) => {
-    var columns = [
+const mapU = (user: UserData) => { // @DONE: changed to const
+    const columns = [ // @DONE: changed to const
         {
             key: 'Name',
             value: `${user.firstName} ${user.lastName}`,
@@ -23,8 +23,9 @@ var mapU = (user: UserData) => {
     return <Card columns={columns} hasNavigation={false} navigationProps={user} />;
 };
 
-const UserOverview = () => {
+const UserOverview = () => { 
     const location = useLocation();
+
     return (
         <Container>
             <Header

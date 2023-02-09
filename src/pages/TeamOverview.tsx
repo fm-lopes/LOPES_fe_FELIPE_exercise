@@ -7,9 +7,9 @@ import {Container} from '../components/GlobalComponents';
 import Header from '../components/Header';
 import List from '../components/List';
 
-var mapArray = (users: UserData[]) => {
+const mapArray = (users: UserData[]) => { // @DONE: changed to const
     return users.map(u => {
-        var columns = [
+        const columns = [ // @DONE: changed to const
             {
                 key: 'Name',
                 value: `${u.firstName} ${u.lastName}`,
@@ -32,8 +32,8 @@ var mapArray = (users: UserData[]) => {
     }) as ListItem[];
 };
 
-var mapTLead = tlead => {
-    var columns = [
+const mapTLead = tlead => { // @DONE: changed to const
+    const columns = [ // @DONE: changed to const
         {
             key: 'Team Lead',
             value: '',
@@ -66,15 +66,17 @@ const TeamOverview = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     React.useEffect(() => {
-        var getTeamUsers = async () => {
+        const getTeamUsers = async () => { // @DONE: changed to const
             const {teamLeadId, teamMemberIds = []} = await getTeamOverview(teamId);
-            const teamLead = await getUserData(teamLeadId);
 
-            const teamMembers = [];
-            for(var teamMemberId of teamMemberIds) {
-                const data = await getUserData(teamMemberId);
-                teamMembers.push(data);
-            }
+            // @DONE: Used Promise.all to query all users in parallel
+            const promises = [
+                getUserData(teamLeadId),
+                ...teamMemberIds.map(tm => getUserData(tm)),
+            ];
+
+            const [teamLead, ...teamMembers] = await Promise.all(promises);
+
             setPageData({
                 teamLead,
                 teamMembers,

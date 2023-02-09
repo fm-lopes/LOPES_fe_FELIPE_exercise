@@ -3,13 +3,15 @@ import {useNavigate} from 'react-router-dom';
 import {Teams, UserData} from 'types';
 import {Container} from './styles';
 
+interface Column {
+    key: string;
+    value: string;
+}
+
 interface Props {
     id?: string;
     url?: string;
-    columns: Array<{
-        key: string;
-        value: string;
-    }>;
+    columns: Array<Column>; // @DONE: extracted to type Column
     hasNavigation?: boolean;
     navigationProps?: UserData | Teams;
 }
@@ -36,9 +38,9 @@ const Card = ({
                 e.preventDefault();
             }}
         >
-            {columns.map(({key: columnKey, value}) => (
-                <p key={columnKey}>
-                    <strong>{columnKey}</strong>&nbsp;{value}
+            {columns.map((c: Column) => ( // @DONE: changed to extracted type Column
+                <p key={c.key}>
+                    <strong>{c.key}</strong>&nbsp;{c.value}
                 </p>
             ))}
         </Container>

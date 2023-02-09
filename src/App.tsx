@@ -5,7 +5,7 @@ import Teams from './pages/Teams';
 import UserOverview from './pages/UserOverview';
 
 const App = () => {
-    var router = createBrowserRouter([
+    var router = createBrowserRouter([ // @DONE: change to const and import routes from external file
         {
             path: '/',
             element: <Teams />,

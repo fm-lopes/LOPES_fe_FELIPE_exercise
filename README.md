@@ -3,6 +3,8 @@
 # Solution Improvement
 
 ### Describe what you have improved in the solution
+- Specified node version in package.json (v12 for instance cause issues on npm start);
+
 
 ## To Run the project you must run:
 

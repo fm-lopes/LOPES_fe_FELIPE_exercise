@@ -69,7 +69,7 @@ const TeamOverview = () => {
         const getTeamUsers = async () => { // @DONE: changed to const
             const {teamLeadId, teamMemberIds = []} = await getTeamOverview(teamId);
 
-            // DONE: Used Promise.all to query all users in parallel
+            // @DONE: Used Promise.all to query all users in parallel
             const promises = [
                 getUserData(teamLeadId),
                 ...teamMemberIds.map(tm => getUserData(tm)),

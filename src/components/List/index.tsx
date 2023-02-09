@@ -14,7 +14,6 @@ const List = ({items, hasNavigation = true, isLoading}: Props) => {
     return (
         <Container>
             {isLoading && <Spinner />}
-            {/* @DONE: added empty list message */}
             {!isLoading &&
                 items.map(({url, id, columns, navigationProps}, index) => {
                     return (

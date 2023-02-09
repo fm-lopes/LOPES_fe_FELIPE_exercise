@@ -24,7 +24,7 @@ const mapU = (user: UserData) => { // @DONE: changed to const
 };
 
 const UserOverview = () => { 
-    const location = useLocation(); // @DONE: use state from react
+    const location = useLocation();
 
     return (
         <Container>
